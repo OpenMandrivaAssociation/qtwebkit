@@ -36,6 +36,7 @@ BuildRequires:	pkgconfig(gstreamer-0.10)
 BuildRequires:	pkgconfig(gstreamer-plugins-base-0.10)
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(libpng)
+BuildRequires:	pkgconfig(libwebp)
 BuildRequires:	bison
 BuildRequires:	gperf
 BuildRequires:	flex
