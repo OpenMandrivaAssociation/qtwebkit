@@ -34,6 +34,9 @@ BuildRequires:	pkgconfig(QtXml)
 BuildRequires:	pkgconfig(QtOpenGL)
 BuildRequires:	pkgconfig(gstreamer-0.10)
 BuildRequires:	pkgconfig(gstreamer-plugins-base-0.10)
+BuildRequires:	bison
+BuildRequires:	gperf
+BuildRequires:	flex
 Summary: Qt WebKit
 URL: http://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23
 License: GPL
