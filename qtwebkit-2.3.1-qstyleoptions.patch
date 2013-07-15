@@ -1,0 +1,14 @@
+--- qtwebkit-2.3.1/Source/WebCore/platform/qt/RenderThemeQStyle.cpp.omv~	2013-07-06 17:25:44.864512010 +0200
++++ qtwebkit-2.3.1/Source/WebCore/platform/qt/RenderThemeQStyle.cpp	2013-07-06 17:31:33.436028472 +0200
+@@ -552,7 +552,10 @@ ControlPart RenderThemeQStyle::initializ
+ 
+     setPaletteFromPageClientIfExists(option.palette);
+ 
+-    if (!isEnabled(o)) {
++    if (isEnabled(o)) {
++        option.palette.setCurrentColorGroup(QPalette::Normal);
++        option.state |= QStyleFacade::State_Enabled;
++    } else {
+         option.palette.setCurrentColorGroup(QPalette::Disabled);
+         option.state &= ~QStyleFacade::State_Enabled;
+     }

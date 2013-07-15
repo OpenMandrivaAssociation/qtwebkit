@@ -7,7 +7,7 @@
 Name: qtwebkit
 # Make sure rpm prefers us over the old QtWebKit built into Qt 4.8.x
 Epoch: 5
-Version: 2.3.1
+Version: 2.3.2
 # Sources from git://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23.git
 %if "%{beta}" == ""
 %if "%{scmrev}" == ""
@@ -27,6 +27,7 @@ Source0: %{name}-%{scmrev}.tar.xz
 %endif
 %endif
 Source100: %name.rpmlintrc
+Patch0: qtwebkit-2.3.1-qstyleoptions.patch
 BuildRequires:	pkgconfig(QtCore)
 BuildRequires:	pkgconfig(QtGui)
 BuildRequires:	pkgconfig(QtNetwork)
@@ -84,6 +85,7 @@ QML module for QtWebKit integration in Qt Quick
 %else
 %setup -q -n qtwebkit
 %endif
+%apply_patches
 Tools/Scripts/build-webkit --qt --release --no-webkit2 --no-force-sse2 --qmakearg="CONFIG+=production_build" --qmakearg="DEFINES+=HAVE_LIBWEBP=1"
 
 %build
