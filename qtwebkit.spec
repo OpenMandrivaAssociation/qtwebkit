@@ -7,11 +7,11 @@
 Name: qtwebkit
 # Make sure rpm prefers us over the old QtWebKit built into Qt 4.8.x
 Epoch: 5
-Version: 2.3.2
+Version: 2.3.3
 # Sources from git://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23.git
 %if "%{beta}" == ""
 %if "%{scmrev}" == ""
-Release: 2
+Release: 1
 Source0: qtwebkit-%{version}.tar.xz
 %else
 Release: 0.%{scmrev}.1
