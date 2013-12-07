@@ -11,7 +11,7 @@ Version: 2.3.3
 # Sources from git://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23.git
 %if "%{beta}" == ""
 %if "%{scmrev}" == ""
-Release: 4
+Release: 5
 Source0: qtwebkit-%{version}.tar.xz
 %else
 Release: 0.%{scmrev}.1
