@@ -7,7 +7,7 @@ Name:		qtwebkit
 # Make sure rpm prefers us over the old QtWebKit built into Qt 4.8.x
 Epoch:		5
 Version:	2.3.3
-Release:	7
+Release:	8
 License:	GPLv2
 Group:		System/Libraries
 Url:		http://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23
@@ -15,6 +15,7 @@ Url:		http://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23
 Source0:	qtwebkit-%{version}.tar.xz
 Source100:	%{name}.rpmlintrc
 Patch0:		qtwebkit-2.3.1-qstyleoptions.patch
+Patch1:		qtwebkit-2.3.3-aarch64.patch
 BuildRequires:	bison
 BuildRequires:	gperf
 BuildRequires:	flex
@@ -65,7 +66,18 @@ QML module for QtWebKit integration in Qt Quick
 %prep
 %setup -q
 %apply_patches
-Tools/Scripts/build-webkit --qt --release --no-webkit2 --no-force-sse2 --qmakearg="CONFIG+=production_build" --qmakearg="DEFINES+=HAVE_LIBWEBP=1"
+Tools/Scripts/build-webkit \
+	--qt \
+	--release \
+	--no-webkit2 \
+	--no-force-sse2 \
+	--qmakearg="CONFIG+=production_build" \
+	--qmakearg="DEFINES+=HAVE_LIBWEBP=1" \
+%ifarch aarch64
+	--qmakearg="DEFINES+=ENABLE_JIT=0" \
+	--qmakearg="DEFINES+=ENABLE_YARR_JIT=0" \
+	--qmakearg="DEFINES+=ENABLE_ASSEMBLER=0"
+%endif
 
 %build
 cd WebKitBuild/Release
