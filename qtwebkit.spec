@@ -18,6 +18,7 @@ Patch0:		qtwebkit-2.3.1-qstyleoptions.patch
 Patch1:		qtwebkit-2.3.3-aarch64.patch
 Patch2:		qtwebkit-2.3.3-bison3.patch
 BuildRequires:	bison
+BuildRequires:	ruby
 BuildRequires:	gperf
 BuildRequires:	flex
 BuildRequires:	jpeg-devel
