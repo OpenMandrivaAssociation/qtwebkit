@@ -16,10 +16,12 @@ Source0:	qtwebkit-%{version}.tar.xz
 Source100:	%{name}.rpmlintrc
 Patch0:		qtwebkit-2.3.1-qstyleoptions.patch
 Patch1:		qtwebkit-2.3.3-aarch64.patch
+Patch2:		qtwebkit-2.3.3-bison3.patch
 BuildRequires:	bison
 BuildRequires:	gperf
 BuildRequires:	flex
 BuildRequires:	jpeg-devel
+BuildRequires:	python2
 BuildRequires:	pkgconfig(gstreamer-0.10)
 BuildRequires:	pkgconfig(gstreamer-plugins-base-0.10)
 BuildRequires:	pkgconfig(libpng)
@@ -66,6 +68,9 @@ QML module for QtWebKit integration in Qt Quick
 %prep
 %setup -q
 %apply_patches
+mkdir pybin
+ln -s %{_bindir}/python2 pybin/python
+export PATH=`pwd`/pybin:$PATH
 Tools/Scripts/build-webkit \
 	--qt \
 	--release \
