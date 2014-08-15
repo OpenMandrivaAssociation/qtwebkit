@@ -7,7 +7,7 @@ Name:		qtwebkit
 # Make sure rpm prefers us over the old QtWebKit built into Qt 4.8.x
 Epoch:		5
 Version:	2.3.3
-Release:	8
+Release:	9
 License:	GPLv2
 Group:		System/Libraries
 Url:		http://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23
