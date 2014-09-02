@@ -67,6 +67,8 @@ Requires:	%{libname} = %{EVRD}
 QML module for QtWebKit integration in Qt Quick
 
 %prep
+export CC=gcc
+export CXX=g++
 %setup -q
 %apply_patches
 mkdir pybin
@@ -78,6 +80,7 @@ Tools/Scripts/build-webkit \
 	--no-webkit2 \
 	--no-force-sse2 \
 	--qmakearg="CONFIG+=production_build" \
+        --qmakearg="QMAKE_CXX=g++" \
 	--qmakearg="DEFINES+=HAVE_LIBWEBP=1" \
 %ifarch aarch64
 	--qmakearg="DEFINES+=ENABLE_JIT=0" \
@@ -86,6 +89,8 @@ Tools/Scripts/build-webkit \
 %endif
 
 %build
+export CC=gcc
+export CXX=g++
 cd WebKitBuild/Release
 %make
 
