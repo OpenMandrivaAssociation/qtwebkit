@@ -7,7 +7,7 @@ Name:		qtwebkit
 # Make sure rpm prefers us over the old QtWebKit built into Qt 4.8.x
 Epoch:		5
 Version:	2.3.3
-Release:	9
+Release:	10
 License:	GPLv2
 Group:		System/Libraries
 Url:		http://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23
@@ -17,6 +17,7 @@ Source100:	%{name}.rpmlintrc
 Patch0:		qtwebkit-2.3.1-qstyleoptions.patch
 Patch1:		qtwebkit-2.3.3-aarch64.patch
 Patch2:		qtwebkit-2.3.3-bison3.patch
+Patch3:		qtwebkit-2.3.3-gstreamer1.patch
 BuildRequires:	bison
 BuildRequires:	ruby
 BuildRequires:	rubygems
@@ -24,8 +25,8 @@ BuildRequires:	gperf
 BuildRequires:	flex
 BuildRequires:	jpeg-devel
 BuildRequires:	python2
-BuildRequires:	pkgconfig(gstreamer-0.10)
-BuildRequires:	pkgconfig(gstreamer-plugins-base-0.10)
+BuildRequires:	pkgconfig(gstreamer-1.0)
+BuildRequires:	pkgconfig(gstreamer-plugins-base-1.0)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(libwebp)
 BuildRequires:	pkgconfig(QtCore)
