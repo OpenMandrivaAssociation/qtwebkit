@@ -6,18 +6,15 @@ Summary:	Qt WebKit
 Name:		qtwebkit
 # Make sure rpm prefers us over the old QtWebKit built into Qt 4.8.x
 Epoch:		5
-Version:	2.3.3
-Release:	10
+Version:	2.3.4
+Release:	1
 License:	GPLv2
 Group:		System/Libraries
 Url:		http://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23
 # Sources from git://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23.git
-Source0:	qtwebkit-%{version}.tar.xz
+Source0:	qtwebkit-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc
 Patch0:		qtwebkit-2.3.1-qstyleoptions.patch
-Patch1:		qtwebkit-2.3.3-aarch64.patch
-Patch2:		qtwebkit-2.3.3-bison3.patch
-Patch3:		qtwebkit-2.3.3-gstreamer1.patch
 BuildRequires:	bison
 BuildRequires:	ruby
 BuildRequires:	rubygems
@@ -71,10 +68,11 @@ QML module for QtWebKit integration in Qt Quick
 %prep
 export CC=gcc
 export CXX=g++
-%setup -q
+%setup -q -c %{name}-%{release}
 %apply_patches
 mkdir pybin
 ln -s %{_bindir}/python2 pybin/python
+export QTDIR=/usr
 export PATH=`pwd`/pybin:$PATH
 Tools/Scripts/build-webkit \
 	--qt \

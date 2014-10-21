@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   qtwebkit-2.3.3.tar.xz: 54543c869f3361bf76b6417b02040b68309cb843
+sources:
+  qtwebkit-2.3.4.tar.gz: a8c7978517ffac2285a9eee7e72a479aa6b910c3
