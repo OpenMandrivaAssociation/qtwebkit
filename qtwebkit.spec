@@ -113,4 +113,3 @@ ln -s qt_webkit.pri %{buildroot}%{_prefix}/lib/qt4/mkspecs/modules/qt_webkit_ver
 
 %files qml
 %{_prefix}/lib/qt4/imports/QtWebKit
-
