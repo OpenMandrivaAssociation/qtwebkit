@@ -21,7 +21,7 @@ BuildRequires:	rubygems
 BuildRequires:	gperf
 BuildRequires:	flex
 BuildRequires:	jpeg-devel
-BuildRequires:	python2
+BuildRequires:	python
 BuildRequires:	pkgconfig(gstreamer-1.0)
 BuildRequires:	pkgconfig(gstreamer-plugins-base-1.0)
 BuildRequires:	pkgconfig(libpng)
