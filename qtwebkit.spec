@@ -7,7 +7,7 @@ Name:		qtwebkit
 # Make sure rpm prefers us over the old QtWebKit built into Qt 4.8.x
 Epoch:		5
 Version:	2.3.4
-Release:	0.2
+Release:	0.1
 License:	GPLv2
 Group:		System/Libraries
 Url:		http://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23
@@ -22,8 +22,8 @@ BuildRequires:	gperf
 BuildRequires:	flex
 BuildRequires:	jpeg-devel
 BuildRequires:	python
-BuildRequires:	pkgconfig(gstreamer-0.10)
-BuildRequires:	pkgconfig(gstreamer-plugins-base-0.10)
+BuildRequires:	pkgconfig(gstreamer-1.0)
+BuildRequires:	pkgconfig(gstreamer-plugins-base-1.0)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(libwebp)
 BuildRequires:	pkgconfig(QtCore)
@@ -81,7 +81,6 @@ Tools/Scripts/build-webkit \
 	--no-force-sse2 \
 	--qmakearg="CONFIG+=production_build" \
         --qmakearg="QMAKE_CXX=g++" \
-	--qmakearg="DEFINES+=WTF_USE_GSTREAMER010=1" \
 	--qmakearg="DEFINES+=HAVE_LIBWEBP=1" \
 %ifarch aarch64
 	--qmakearg="DEFINES+=ENABLE_JIT=0" \
