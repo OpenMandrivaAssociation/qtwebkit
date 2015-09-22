@@ -15,6 +15,8 @@ Url:		http://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23
 Source0:	qtwebkit-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc
 Patch0:		qtwebkit-2.3.1-qstyleoptions.patch
+Patch1:		webkit-qtwebkit-23-gcc5.patch
+Patch2:		webkit-qtwebkit-23-private_browsing.patch
 BuildRequires:	bison
 BuildRequires:	ruby
 BuildRequires:	rubygems
