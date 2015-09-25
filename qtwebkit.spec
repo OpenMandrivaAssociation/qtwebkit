@@ -101,6 +101,8 @@ cd WebKitBuild/Release
 make install INSTALL_ROOT=%{buildroot}
 # For compatibility with QtWebKit 2.2.x included in Qt 4.8.5 source
 ln -s qt_webkit.pri %{buildroot}%{_prefix}/lib/qt4/mkspecs/modules/qt_webkit_version.pri
+# # Fix wrong path in prl file
+sed -i -e '/^QMAKE_PRL_BUILD_DIR/d;s/\(QMAKE_PRL_LIBS =\).*/\1/' %{buildroot}/%{_libdir}/libQtWebKit.prl
 
 %files -n %{libname}
 %{_libdir}/libQtWebKit.so.%{major}*
