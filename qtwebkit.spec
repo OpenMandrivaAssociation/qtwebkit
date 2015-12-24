@@ -17,6 +17,7 @@ Source100:	%{name}.rpmlintrc
 Patch0:		qtwebkit-2.3.1-qstyleoptions.patch
 Patch1:		webkit-qtwebkit-23-gcc5.patch
 Patch2:		webkit-qtwebkit-23-private_browsing.patch
+Patch3:		qtwebkit-2.3-save_memory.patch
 BuildRequires:	bison
 BuildRequires:	ruby
 BuildRequires:	rubygems
