@@ -7,7 +7,7 @@ Name:		qtwebkit
 # Make sure rpm prefers us over the old QtWebKit built into Qt 4.8.x
 Epoch:		5
 Version:	2.3.4
-Release:	4
+Release:	5
 License:	GPLv2
 Group:		System/Libraries
 Url:		http://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23
@@ -68,10 +68,13 @@ Requires:	%{libname} = %{EVRD}
 %description qml
 QML module for QtWebKit integration in Qt Quick
 
+
 %prep
+%setup -q -c %{name}-%{release}
+
 export CC=gcc
 export CXX=g++
-%setup -q -c %{name}-%{release}
+
 %apply_patches
 mkdir pybin
 ln -s %{_bindir}/python2 pybin/python
