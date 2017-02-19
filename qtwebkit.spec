@@ -7,7 +7,7 @@ Name:		qtwebkit
 # Make sure rpm prefers us over the old QtWebKit built into Qt 4.8.x
 Epoch:		5
 Version:	2.3.4
-Release:	6
+Release:	7
 License:	GPLv2
 Group:		System/Libraries
 Url:		http://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23
@@ -50,7 +50,7 @@ Summary:	Qt WebKit
 Group:		System/Libraries
 
 %description -n %{libname}
-Qt WebKit
+Qt WebKit.
 
 %package -n %{devname}
 Summary:	Development files for %{name}
@@ -66,7 +66,7 @@ Group:		Development/KDE and Qt
 Requires:	%{libname} = %{EVRD}
 
 %description qml
-QML module for QtWebKit integration in Qt Quick
+QML module for QtWebKit integration in Qt Quick.
 
 
 %prep
