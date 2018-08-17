@@ -7,7 +7,7 @@ Name:		qtwebkit
 # Make sure rpm prefers us over the old QtWebKit built into Qt 4.8.x
 Epoch:		5
 Version:	2.3.4
-Release:	8
+Release:	9
 License:	GPLv2
 Group:		System/Libraries
 Url:		http://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23
@@ -35,16 +35,10 @@ BuildRequires:	pkgconfig(QtGui)
 BuildRequires:	pkgconfig(QtNetwork)
 BuildRequires:	pkgconfig(QtXml)
 BuildRequires:	pkgconfig(QtOpenGL)
-
-%track
-prog %{name} = {
-	url = http://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23/trees/qtwebkit-2.3
-	regex = "qtwebkit-(__VER__)"
-	version = %{version}
-}
+BuildRequires:	chrpath
 
 %description
-Qt WebKit
+Qt WebKit.
 
 %package -n %{libname}
 Summary:	Qt WebKit
@@ -84,16 +78,16 @@ export PATH=`pwd`/pybin:$PATH
 Tools/Scripts/build-webkit \
 	--qt \
 	--release \
+	--3d-rendering \
 	--no-webkit2 \
 	--no-force-sse2 \
-	--qmakearg="CONFIG+=production_build" \
-        --qmakearg="QMAKE_CXX=g++" \
-	--qmakearg="DEFINES+=HAVE_LIBWEBP=1" \
+	--qmakearg="CONFIG+=production_build QMAKE_CXX=g++ DEFINES+=HAVE_LIBWEBP=1 QMAKE_CFLAGS=\"%{optflags}\" QMAKE_CXXFLAGS=\"%{optflags} -Wno-expansion-to-defined\" QMAKE_LFLAGS=\"%{?ldflags}\" QMAKE_STRIP=" \
 %ifarch aarch64
 	--qmakearg="DEFINES+=ENABLE_JIT=0" \
 	--qmakearg="DEFINES+=ENABLE_YARR_JIT=0" \
-	--qmakearg="DEFINES+=ENABLE_ASSEMBLER=0"
+	--qmakearg="DEFINES+=ENABLE_ASSEMBLER=0" \
 %endif
+	--makeargs="%{_smp_mflags}"
 
 %build
 export CC=gcc
@@ -108,6 +102,10 @@ make install INSTALL_ROOT=%{buildroot}
 ln -s qt_webkit.pri %{buildroot}%{_prefix}/lib/qt4/mkspecs/modules/qt_webkit_version.pri
 # # Fix wrong path in prl file
 sed -i -e '/^QMAKE_PRL_BUILD_DIR/d;s/\(QMAKE_PRL_LIBS =\).*/\1/' %{buildroot}/%{_libdir}/libQtWebKit.prl
+
+# Remove rpath
+chrpath --list   %{buildroot}%{_qt4_libdir}/libQtWebKit.so.4.10.? ||:
+chrpath --delete %{buildroot}%{_qt4_libdir}/libQtWebKit.so.4.10.? ||:
 
 %files -n %{libname}
 %{_libdir}/libQtWebKit.so.%{major}*
