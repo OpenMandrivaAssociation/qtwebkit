@@ -1,0 +1,35 @@
+From 650c6ee8e76bb574d3a1bea09e2494992d8f070e Mon Sep 17 00:00:00 2001
+From: Allan Sandfeld Jensen <allan.jensen@theqtcompany.com>
+Date: Fri, 6 Mar 2015 11:20:13 +0100
+Subject: Fix g++ 5.0 build
+
+A non-inline template needs to be explicitly instantiated if used
+outside the object where it is declared.
+
+Patch suggested by Khem Raj.
+
+Task-number: QTBUG-44829
+Change-Id: Ib0adbd9273bd1cef01e5863bc8aaa9c373022792
+Reviewed-by: Andras Becsi <andras.becsi@theqtcompany.com>
+---
+ Source/JavaScriptCore/runtime/JSObject.cpp | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+Rediffed from upstream commit to apply to Mageia:
+
+diff --git a/Source/JavaScriptCore/runtime/JSObject.cpp b/Source/JavaScriptCore/runtime/JSObject.cpp
+index 5637e20..bd55919 100644
+--- a/Source/JavaScriptCore/runtime/JSObject.cpp	2014-09-24 13:42:05.000000000 +0200
++++ b/Source/JavaScriptCore/runtime/JSObject.cpp	2016-03-17 06:17:06.000000000 +0100
+@@ -1922,6 +1922,11 @@
+     }
+ }
+ 
++// Used in JSArray.cpp so we must instantiate explicit
++template void JSObject::putByIndexBeyondVectorLengthWithoutAttributes<Int32Shape>(ExecState* exec, unsigned i, JSValue value);
++template void JSObject::putByIndexBeyondVectorLengthWithoutAttributes<DoubleShape>(ExecState* exec, unsigned i, JSValue value);
++template void JSObject::putByIndexBeyondVectorLengthWithoutAttributes<ContiguousShape>(ExecState* exec, unsigned i, JSValue value);
++
+ void JSObject::putByIndexBeyondVectorLengthWithArrayStorage(ExecState* exec, unsigned i, JSValue value, bool shouldThrow, ArrayStorage* storage)
+ {
+     JSGlobalData& globalData = exec->globalData();

@@ -1,0 +1,72 @@
+Submitted By:            Armin K. <krejzi at email dot com>
+Date:                    2013-08-10
+Initial Package Version: 5.1.0
+Upstream Status:         Not Submitted
+Origin:                  Self
+Description:             Fixes building with Bison 3.0.
+
+--- qtwebkit/Source/ThirdParty/ANGLE/ANGLE.pro.bison	2013-07-02 09:10:31.000000000 +0200
++++ qtwebkit/Source/ThirdParty/ANGLE/ANGLE.pro	2013-08-11 01:56:53.306056723 +0200
+@@ -6,9 +6,6 @@
+ 
+ TEMPLATE = subdirs
+ 
+-derived_sources.file = DerivedSources.pri
+ target.file = Target.pri
+ 
+-SUBDIRS += derived_sources target
+-
+-addStrictSubdirOrderBetween(derived_sources, target)
++SUBDIRS += target
+--- qtwebkit/Source/ThirdParty/ANGLE/Target.pri.bison	2013-07-02 09:10:31.000000000 +0200
++++ qtwebkit/Source/ThirdParty/ANGLE/Target.pri	2013-08-11 01:52:17.821160329 +0200
+@@ -33,6 +33,7 @@
+     src/compiler/ExtensionBehavior.h \
+     src/compiler/ForLoopUnroll.h \
+     src/compiler/glslang.h \
++    src/compiler/glslang_tab.h \
+     src/compiler/InfoSink.h \
+     src/compiler/InitializeDll.h \
+     src/compiler/InitializeGlobals.h \
+@@ -52,6 +53,7 @@
+     src/compiler/preprocessor/new/Diagnostics.h \
+     src/compiler/preprocessor/new/DirectiveHandler.h \
+     src/compiler/preprocessor/new/DirectiveParser.h \
++    src/compiler/preprocessor/new/ExpressionParser.h \
+     src/compiler/preprocessor/new/Input.h \
+     src/compiler/preprocessor/new/Lexer.h \
+     src/compiler/preprocessor/new/Macro.h \
+@@ -105,6 +107,8 @@
+     src/compiler/Diagnostics.cpp \
+     src/compiler/DirectiveHandler.cpp \
+     src/compiler/ForLoopUnroll.cpp \
++    src/compiler/glslang_lex.cpp \
++    src/compiler/glslang_tab.cpp \
+     src/compiler/InfoSink.cpp \
+     src/compiler/Initialize.cpp \
+     src/compiler/InitializeDll.cpp \
+@@ -142,12 +146,14 @@
+     src/compiler/preprocessor/new/DiagnosticsBase.cpp \
+     src/compiler/preprocessor/new/DirectiveHandlerBase.cpp \
+     src/compiler/preprocessor/new/DirectiveParser.cpp \
++    src/compiler/preprocessor/new/ExpressionParser.cpp \
+     src/compiler/preprocessor/new/Input.cpp \
+     src/compiler/preprocessor/new/Lexer.cpp \
+     src/compiler/preprocessor/new/Macro.cpp \
+     src/compiler/preprocessor/new/MacroExpander.cpp \
+     src/compiler/preprocessor/new/Preprocessor.cpp \
+     src/compiler/preprocessor/new/Token.cpp \
++    src/compiler/preprocessor/new/Tokenizer.cpp \
+     src/compiler/preprocessor/scanner.c \
+     src/compiler/preprocessor/symbols.c \
+     src/compiler/preprocessor/tokens.c
+@@ -155,9 +161,6 @@
+ win32: SOURCES += src/compiler/ossource_win.cpp
+ else: SOURCES += src/compiler/ossource_posix.cpp
+ 
+-# Make sure the derived sources are built
+-include(DerivedSources.pri)
+-
+ *g++* {
+     QMAKE_CXXFLAGS += -Wno-unused-variable -Wno-missing-noreturn -Wno-unused-function -Wno-reorder -Wno-error -Wno-unknown-pragmas -Wno-undef
+ }
