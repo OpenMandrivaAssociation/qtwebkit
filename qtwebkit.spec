@@ -14,10 +14,20 @@ Url:		http://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23
 # Sources from git://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23.git
 Source0:	qtwebkit-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc
-Patch0:		qtwebkit-2.3.1-qstyleoptions.patch
-Patch1:		webkit-qtwebkit-23-gcc5.patch
-Patch2:		webkit-qtwebkit-23-private_browsing.patch
-Patch3:		qtwebkit-2.3-save_memory.patch
+# patch from Linux From Scratch, fix build with bison 3.0
+Patch2:		qt-5.1.0-bison_fixes-1.patch
+
+# smaller debuginfo s/-g/-g1/ (debian uses -gstabs) to avoid 4gb size limit
+Patch3:		qtwebkit-2.3-debuginfo.patch
+
+# tweak linker flags to minimize memory usage on "small" platforms
+Patch4:		qtwebkit-2.3-save_memory.patch
+
+# backport from qt5-qtwebkit: URLs visited during private browsing show up in WebpageIcons.db
+Patch101:	webkit-qtwebkit-23-private_browsing.patch
+# backport from qt5-qtwebkit: Fix g++ 5.0 build (QTBUG-44829)
+Patch102:	qtwebkit-g++-5.0-build.patch
+
 BuildRequires:	bison
 BuildRequires:	ruby
 BuildRequires:	rubygems
@@ -71,6 +81,7 @@ export CC=gcc
 export CXX=g++
 
 %apply_patches
+
 mkdir pybin
 ln -s %{_bindir}/python2 pybin/python
 export QTDIR=/usr
