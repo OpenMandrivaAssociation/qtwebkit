@@ -80,7 +80,7 @@ QML module for QtWebKit integration in Qt Quick.
 export CC=gcc
 export CXX=g++
 
-%apply_patches
+%autopatch -p1
 
 mkdir pybin
 ln -s %{_bindir}/python2 pybin/python
