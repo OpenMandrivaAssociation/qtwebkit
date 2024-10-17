@@ -10,7 +10,7 @@ Version:	2.3.4
 Release:	11
 License:	GPLv2
 Group:		System/Libraries
-Url:		http://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23
+Url:		https://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23
 # Sources from git://gitorious.org/+qtwebkit-developers/webkit/qtwebkit-23.git
 Source0:	qtwebkit-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc
