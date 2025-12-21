@@ -28,6 +28,7 @@ Patch101:	webkit-qtwebkit-23-private_browsing.patch
 # backport from qt5-qtwebkit: Fix g++ 5.0 build (QTBUG-44829)
 Patch102:	qtwebkit-g++-5.0-build.patch
 
+BuildRequires:	make
 BuildRequires:	bison
 BuildRequires:	ruby
 BuildRequires:	rubygems
